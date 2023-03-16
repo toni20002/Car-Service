@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <title>Car Service</title>
+    <meta charset="UTF-8">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<header th:fragment="header" style="text-align: center">
+    <h1>Car Service System</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navigation">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/car-services">List of Car Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/register">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<footer page-footer font-small>
+    <div class="footer-copyright text-center py-3">© 2023 Copyright:
+        <a href="#"> Car Service System</a>
+    </div>
+</footer>
+
+</html>
