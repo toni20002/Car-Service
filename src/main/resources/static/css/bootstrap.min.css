@@ -9082,4 +9082,13 @@ a.text-dark:focus, a.text-dark:hover {
 .col-6 {
     margin-left: 5%;
 }
+
+.globalError {
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.loggedIn {
+    text-align: right;
+}
 /*# sourceMappingURL=bootstrap.min.css.map */

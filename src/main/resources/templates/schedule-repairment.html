@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+<div class="col-6">
+    <h4>Schedule Repairment</h4>
+    <form action="#" th:action="@{/schedule-repairment}" th:object="${vehicle}" method="post">
+        <div class="form-group">
+            <table class="register-table">
+                <tr>
+                    <td>
+                        <label for="licensePlateNumber">License Plate Number</label>
+                        <input class="form-control" type="text" th:field="*{licensePlateNumber}"
+                               placeholder="License Plate Number"
+                               id="licensePlateNumber">
+                    </td>
+                    <td>
+                        <div th:if="${#fields.hasErrors('licensePlateNumber')}" th:errorclass="error"
+                             th:errors="*{licensePlateNumber}"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="vehicleBrand">Vehicle Brand</label>
+                        <input class="form-control" type="text" th:field="*{vehicleBrand}" placeholder="Vehicle Brand"
+                               id="vehicleBrand">
+                    </td>
+                    <td>
+                        <div th:if="${#fields.hasErrors('vehicleBrand')}" th:errorclass="error"
+                             th:errors="*{vehicleBrand}"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="vehicleModel">Vehicle Model</label>
+                        <input class="form-control" type="text" th:field="*{vehicleModel}" placeholder="Vehicle Model"
+                               id="vehicleModel">
+                    </td>
+                    <td>
+                        <div th:if="${#fields.hasErrors('vehicleModel')}" th:errorclass="error"
+                             th:errors="*{vehicleModel}"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="yearOfManufacture">Manufacture Year</label>
+                        <input class="form-control" type="text" th:field="*{yearOfManufacture}"
+                               placeholder="Manufacture Year"
+                               id="yearOfManufacture">
+                    </td>
+                    <td>
+                        <div th:if="${#fields.hasErrors('yearOfManufacture')}" th:errorclass="error"
+                             th:errors="*{yearOfManufacture}"></div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        <button type="submit" class="btn btn-primary">Schedule Repairment</button>
+    </form>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

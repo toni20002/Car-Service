@@ -2,10 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:replace="fragments :: head"></head>
 <body>
-<header th:replace="fragments :: header"></header>
 <div class="col-6">
     <h4>Register</h4>
-    <form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
+    <form action="#" th:action="@{/register}" th:object="${user}" method="post">
         <div class="form-group">
             <table class="register-table">
                 <tr>
@@ -32,7 +31,8 @@
                 <tr>
                     <td>
                         <label for="password">Password</label>
-                        <input class="form-control" type="password" th:field="*{password}" placeholder="Password" id="password">
+                        <input class="form-control" type="password" th:field="*{password}" placeholder="Password"
+                               id="password">
                     </td>
 
                     <td>
@@ -42,7 +42,8 @@
                 <tr>
                     <td>
                         <label for="firstName">First Name</label>
-                        <input class="form-control" type="text" th:field="*{firstName}" placeholder="First Name" id="firstName">
+                        <input class="form-control" type="text" th:field="*{firstName}" placeholder="First Name"
+                               id="firstName">
                     </td>
 
                     <td>
@@ -53,7 +54,8 @@
                 <tr>
                     <td>
                         <label for="lastName">Last Name</label>
-                        <input class="form-control" type="text" th:field="*{lastName}" placeholder="Last Name" id="lastName">
+                        <input class="form-control" type="text" th:field="*{lastName}" placeholder="Last Name"
+                               id="lastName">
                     </td>
 
                     <td>
@@ -69,7 +71,8 @@
                     </td>
 
                     <td>
-                        <div th:if="${#fields.hasErrors('phoneNumber')}" th:errorclass="error" th:errors="*{phoneNumber}"/>
+                        <div th:if="${#fields.hasErrors('phoneNumber')}" th:errorclass="error"
+                             th:errors="*{phoneNumber}"/>
                     </td>
                 </tr>
 

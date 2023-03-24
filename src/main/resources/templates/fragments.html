@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:fragment="head">
     <title>Car Service</title>
     <meta charset="UTF-8">
@@ -12,6 +12,12 @@ and open the template in the editor.
 </head>
 <header th:fragment="header" style="text-align: center">
     <h1>Car Service System</h1>
+    <div class="loggedIn">
+        Hello,
+        <span th:text="${session.user.getUsername()}" sec:authorize="isAuthenticated()"></span>
+        <a class="btn" th:href="@{/logout}">Logout</a>
+    </div>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navigation">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -22,7 +28,10 @@ and open the template in the editor.
                     <a class="nav-link" href="/car-services">List of Car Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/register">Register</a>
+                    <a class="nav-link" href="/schedule-repairment">Schedule Repairment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/my-vehicles">My Vehicles</a>
                 </li>
             </ul>
         </div>
@@ -30,7 +39,7 @@ and open the template in the editor.
 </header>
 <footer page-footer font-small>
     <div class="footer-copyright text-center py-3">© 2023 Copyright:
-        <a href="#"> Car Service System</a>
+        <a href="/"> Car Service System</a>
     </div>
 </footer>
 

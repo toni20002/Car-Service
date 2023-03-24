@@ -1,15 +1,14 @@
-package com.carservice.data;
+package com.carservice.web.model;
 
-import jakarta.validation.constraints.NotEmpty;
+import com.carservice.data.entities.Role;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 
 @Data
-@NoArgsConstructor
-public class User {
+public class UserModel {
     private Long user_id;
     @NotEmpty(message = "Username field is required!")
     private String username;
@@ -18,11 +17,12 @@ public class User {
     @NotEmpty(message = "Password field is required!")
     private String password;
     @NotEmpty(message = "First Name field is required!")
+    @Column(name = "firstName")
     private String firstName;
     @NotEmpty(message = "Last Name field is required!")
     private String lastName;
     @NotEmpty(message = "PhoneNumber field is required!")
     private String phoneNumber;
     private Timestamp creationTime;
-    private String role;
+    private Role role_id;
 }

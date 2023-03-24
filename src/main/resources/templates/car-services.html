@@ -10,10 +10,20 @@
         <th>Id</th>
         <th>Name</th>
         <th>Location</th>
+        <th>Dedicated Brand</th>
+        <th>Repairment Services</th>
         <tr th:each="carService : ${carServices}">
             <td th:text="${carService.id}"></td>
             <td th:text="${carService.name}"></td>
             <td th:text="${carService.location}"></td>
+            <td th:text="${carService.dedicatedBrand}"></td>
+            <td>
+                <select>
+                    <option value="">Repairment Services</option>
+                    <option th:each="repairmentService : ${carService.getRepairmentServices()}"
+                            th:text="${repairmentService.getTypeOfRepairment()}"></option>
+                </select>
+            </td>
         </tr>
     </table>
 </div>
