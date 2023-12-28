@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -36,7 +37,8 @@ public class User implements UserDetails {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role_id;
-
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    private Set<Vehicle> vehicles;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singleton(new SimpleGrantedAuthority(role_id.getAuthority()));

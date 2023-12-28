@@ -20,8 +20,8 @@
             <td>
                 <select>
                     <option value="">Repairment Services</option>
-                    <option th:each="repairmentService : ${carService.getRepairmentServices()}"
-                            th:text="${repairmentService.getTypeOfRepairment()}"></option>
+                    <option th:each="repairmentType : ${carService.getRepairmentTypes()}"
+                            th:text="${repairmentType.getTypeOfRepairment()}"></option>
                 </select>
             </td>
         </tr>

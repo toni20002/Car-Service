@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "repairment_services")
+@Table(name = "repairment_type")
 @Getter
 @Setter
-public class RepairmentServices {
+public class RepairmentType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,6 +20,9 @@ public class RepairmentServices {
     @Column(nullable = false, unique = true)
     private String typeOfRepairment;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "repairmentServices")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "repairmentTypes")
     private Set<CarService> carServices;
+
+    @OneToMany(mappedBy = "repairmentType", fetch = FetchType.LAZY)
+    private List<Repairment> repairments;
 }

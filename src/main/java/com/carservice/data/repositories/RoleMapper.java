@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RoleMapper extends JpaRepository<Role, Long> {
-
     Role findRoleByAuthority(String authority);
 
 }

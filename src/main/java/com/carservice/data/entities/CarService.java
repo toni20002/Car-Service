@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,9 +23,12 @@ public class CarService {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "car_service_repairment_services",
+            name = "car_service_repairment_type",
             joinColumns = @JoinColumn(name = "carServices_id"),
-            inverseJoinColumns = @JoinColumn(name = "repairmentServices_id")
+            inverseJoinColumns = @JoinColumn(name = "repairmentType_id")
     )
-    private Set<RepairmentServices> repairmentServices;
+    private Set<RepairmentType> repairmentTypes;
+
+    @OneToMany(mappedBy = "carService", fetch = FetchType.LAZY)
+    private List<Repairment> repairments;
 }

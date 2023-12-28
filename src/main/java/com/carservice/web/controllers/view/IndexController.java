@@ -3,7 +3,7 @@ package com.carservice.web.controllers.view;
 import com.carservice.data.entities.User;
 import com.carservice.data.repositories.RoleMapper;
 import com.carservice.data.repositories.UserRepository;
-import com.carservice.data.repositories.VehicleRepository;
+import com.carservice.services.VehicleService;
 import com.carservice.web.model.UserModel;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -31,20 +31,23 @@ public class IndexController {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
-    private final VehicleRepository vehicleRepository;
+    private final VehicleService vehicleService;
 
     @Autowired
     public IndexController(RoleMapper roleMapper, BCryptPasswordEncoder bCryptPasswordEncoder,
-                           UserRepository userRepository, ModelMapper modelMapper, VehicleRepository vehicleRepository) {
+                           UserRepository userRepository, ModelMapper modelMapper, VehicleService vehicleService) {
         this.roleMapper = roleMapper;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
-        this.vehicleRepository = vehicleRepository;
+        this.vehicleService = vehicleService;
     }
 
     @GetMapping("/unauthorized")
-    public String unauthorized() {
+    public String unauthorized(HttpServletRequest request, Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+        request.getSession().setAttribute("user", user);
+
         return "/unauthorized";
     }
 
@@ -86,6 +89,12 @@ public class IndexController {
         try {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             user.setCreationTime(Timestamp.valueOf(LocalDateTime.now()));
+            /**
+             *All users are created as CUSTOMER by default, in order for a user to be ADMIN
+             *he has to be manually set as one
+             **/
+            //TODO figure out the worker logic - would there be a different logic for registering a worker
+            // or would it be set manually as well
             user.setRole_id(roleMapper.findRoleByAuthority("CUSTOMER"));
 
             userRepository.saveAndFlush(modelMapper.map(user, User.class));
@@ -103,7 +112,7 @@ public class IndexController {
     public String getMyVehicles(HttpServletRequest request, Model model) {
         User user = (User) request.getSession().getAttribute("user");
 
-        model.addAttribute("vehicles", vehicleRepository.getAllByOwner(user));
+        model.addAttribute("vehicles", vehicleService.getAllVehiclesByOwner(user));
 
         return "/my-vehicles";
     }

@@ -58,6 +58,50 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td>
+                        <select th:field="*{selectedCarService}">
+                            <option value="">Select Car service</option>
+                            <option th:each="carService : ${carServicesList}"
+                                    th:value="${carService.getName()}"
+                                    th:text="${carService.getName()}"></option>
+                        </select>
+                    </td>
+
+                    <td>
+                        <div th:if="${#fields.hasErrors('selectedCarService')}" th:errorclass="error"
+                             th:errors="*{selectedCarService}"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <select th:field="*{selectedRepairmentType}">
+                            <option value="">Select repairment service</option>
+                            <option th:each="repairmentType : ${vehicle.getRepairmentTypes()}"
+                                    th:value="${repairmentType.getTypeOfRepairment()}"
+                                    th:text="${repairmentType.getTypeOfRepairment()}"></option>
+                        </select>
+                    </td>
+
+                    <td>
+                        <div th:if="${#fields.hasErrors('selectedRepairmentType')}" th:errorclass="error"
+                             th:errors="*{selectedRepairmentType}"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="selectedTimeForRepair">Select Time for repairment</label>
+                        <input class="form-control" type="datetime-local" th:field="*{selectedTimeForRepair}"
+                               placeholder="Time for repairment"
+                               id="selectedTimeForRepair">
+                    </td>
+                    <td>
+                        <div th:if="${#fields.hasErrors('selectedTimeForRepair')}" th:errorclass="error"
+                             th:errors="*{selectedTimeForRepair}"></div>
+                    </td>
+                </tr>
             </table>
         </div>
         <button type="submit" class="btn btn-primary">Schedule Repairment</button>

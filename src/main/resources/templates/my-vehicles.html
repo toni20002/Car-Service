@@ -7,15 +7,21 @@
 <div class="col-6">
     <h3 th:unless="${vehicles} and ${vehicles.size()}">You have no registered vehicles at the moment!</h3>
     <table th:if="${vehicles.size()>0}" class="table table-hover">
-        <th>Id</th>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Dedicated Brand</th>
+        <th>Plate Number</th>
+        <th>Vehicle Brand</th>
+        <th>Vehicle Model</th>
+        <th>Year of Manufacture</th>
+<!--        <th>Type Of Repairment</th>-->
+<!--        <th>Repairment CarService</th>-->
+        <th>Selected Repairment time</th>
         <tr th:each="vehicle : ${vehicles}">
             <td th:text="${vehicle.licensePlateNumber}"></td>
             <td th:text="${vehicle.vehicleBrand}"></td>
             <td th:text="${vehicle.vehicleModel}"></td>
             <td th:text="${vehicle.yearOfManufacture}"></td>
+<!--            <td th:text="${vehicle.getRepairments()}"></td>-->
+<!--            <td th:text="${vehicle.selectedCarService}"></td>-->
+            <td th:text="${vehicle.getSelectedTimeForRepair()}"></td>
         </tr>
     </table>
 </div>
