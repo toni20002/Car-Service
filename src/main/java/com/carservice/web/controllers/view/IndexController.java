@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Controller
+@ControllerAdvice
 @Slf4j
 public class IndexController {
     private final RoleMapper roleMapper;
@@ -115,6 +117,11 @@ public class IndexController {
         model.addAttribute("vehicles", vehicleService.getAllVehiclesByOwner(user));
 
         return "/my-vehicles";
+    }
+
+    @ModelAttribute("servletPath")
+    String getRequestServletPath(HttpServletRequest request) {
+        return request.getServletPath();
     }
 
 }

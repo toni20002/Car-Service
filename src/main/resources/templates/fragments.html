@@ -21,17 +21,25 @@ and open the template in the editor.
     <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navigation">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       th:classappend="${servletPath == '/' ? 'active':''}"
+                       href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/car-services">List of Car Services</a>
+                    <a class="nav-link"
+                       th:classappend="${servletPath == '/car-services' ? 'active':''}"
+                       href="/car-services">List of Car Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/schedule-repairment">Schedule Repairment</a>
+                    <a class="nav-link"
+                       th:classappend="${servletPath == '/schedule-repairment' ? 'active':''}"
+                       href="/schedule-repairment">Schedule Repairment</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/my-vehicles">My Vehicles</a>
+                    <a class="nav-link"
+                       th:classappend="${servletPath == '/my-vehicles' ? 'active':''}"
+                       href="/my-vehicles">My Vehicles</a>
                 </li>
             </ul>
         </div>
