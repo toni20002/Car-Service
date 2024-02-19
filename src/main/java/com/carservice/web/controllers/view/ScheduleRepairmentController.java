@@ -10,6 +10,7 @@ import com.carservice.services.VehicleService;
 import com.carservice.web.model.VehicleModel;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,15 +33,18 @@ public class ScheduleRepairmentController {
     private final VehicleService vehicleService;
     private final CarServiceRepository carServiceRepository;
     private final RepairmentService repairmentService;
+    private final ModelMapper modelMapper;
+
 
     @Autowired
     public ScheduleRepairmentController(RepairmentTypeRepository repairmentTypeRepository,
                                         VehicleService vehicleService, CarServiceRepository carServiceRepository,
-                                        RepairmentService repairmentService) {
+                                        RepairmentService repairmentService, ModelMapper modelMapper) {
         this.repairmentTypeRepository = repairmentTypeRepository;
         this.vehicleService = vehicleService;
         this.carServiceRepository = carServiceRepository;
         this.repairmentService = repairmentService;
+        this.modelMapper = modelMapper;
     }
 
     @ModelAttribute("vehicle")
@@ -70,7 +74,7 @@ public class ScheduleRepairmentController {
         User user = (User) request.getSession().getAttribute("user");
         vehicle.setOwner(user);
 
-        Vehicle savedVehicle = vehicleService.saveVehicle(vehicle);
+        Vehicle savedVehicle = vehicleService.saveVehicle(modelMapper.map(vehicle, Vehicle.class));
         /*TODO a repairment ticket has to be created once a vehicle is registered
         *  that means that someone needs to be assigned to that vehicle and the repairment may start
         *  however, there is an issue with setting the necessary fields because for some reason
@@ -89,4 +93,5 @@ public class ScheduleRepairmentController {
 //                vehicleService.buildMyVehiclesModel(vehicle));
         return new ModelAndView("redirect:/my-vehicles");
     }
+
 }

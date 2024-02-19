@@ -11,4 +11,6 @@ import java.util.Set;
 public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
 
     Set<Vehicle> getAllByOwner(User user);
+
+//    Vehicle getByVehicle_id(Long vehicleId);
 }

@@ -51,7 +51,7 @@ public class ApplicationSecurityConfiguration {
                         "/login", "/register").permitAll()
                 .requestMatchers("/car-services/**").permitAll()
                 .requestMatchers("/my-vehicles/**").permitAll()
-                .requestMatchers("/schedule-repairment/**").permitAll()
+                .requestMatchers("/schedule-repairment/**", "/assign-worker/**").permitAll()
                 .requestMatchers("/api/**").hasAnyAuthority("ADMIN")
                 .and()
                 .formLogin()

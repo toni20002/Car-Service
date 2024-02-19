@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -31,7 +32,7 @@ public class VehicleService {
         this.modelMapper = modelMapper;
     }
 
-    public Vehicle saveVehicle(VehicleModel vehicle) {
+    public Vehicle saveVehicle(Vehicle vehicle) {
         return vehicleRepository.saveAndFlush(modelMapper.map(vehicle, Vehicle.class));
     }
 
@@ -48,5 +49,9 @@ public class VehicleService {
                 .findRepairmentTypeByTypeOfRepairment(vehicle.getSelectedRepairmentType()));
 
         return myVehiclesModel;
+    }
+
+    public Optional<Vehicle> getVehicleById(Long vehicleId) {
+        return this.vehicleRepository.findById(vehicleId);
     }
 }

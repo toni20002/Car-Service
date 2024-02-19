@@ -76,6 +76,14 @@
                     </td>
                 </tr>
 
+                <tr th:if="${session.user.getRole_id().getAuthority().equals('ADMIN')}">
+                    <td style="display: flex; align-items: center;">
+                        <label for="isEmployee">Is Employee?</label>
+                        <input class="form-control" type="checkbox" th:field="*{isEmployee}" placeholder="isEmployee"
+                               id="isEmployee">
+                    </td>
+                </tr>
+
             </table>
         </div>
         <button type="submit" class="btn btn-primary">Create My Account</button>

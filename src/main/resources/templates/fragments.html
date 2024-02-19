@@ -1,20 +1,16 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:fragment="head">
     <title>Car Service</title>
     <meta charset="UTF-8">
+    <link rel="icon" href="images/broken-car.png" type="image/x-icon" th:href="@{/images/broken-car.png}">
     <link href="/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <header th:fragment="header" style="text-align: center">
     <h1>Car Service System</h1>
     <div class="loggedIn">
         Hello,
-        <span th:text="${session.user.getUsername()}" sec:authorize="isAuthenticated()"></span>
+        <span th:text="${session.user.getFirstName()}" sec:authorize="isAuthenticated()"></span>
         <a class="btn" th:href="@{/logout}">Logout</a>
     </div>
 
@@ -40,6 +36,11 @@ and open the template in the editor.
                     <a class="nav-link"
                        th:classappend="${servletPath == '/my-vehicles' ? 'active':''}"
                        href="/my-vehicles">My Vehicles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       th:classappend="${servletPath == '/assign-worker' ? 'active':''}"
+                       href="/assign-worker">Assign Repairments</a>
                 </li>
             </ul>
         </div>

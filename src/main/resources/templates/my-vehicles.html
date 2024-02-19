@@ -3,7 +3,7 @@
 <head th:replace="fragments :: head"></head>
 <body>
 <header th:replace="fragments :: header"></header>
-<h4>My Vehicles</h4>
+<h4 style="margin: 2%">My Vehicles</h4>
 <div class="col-6">
     <h3 th:unless="${vehicles} and ${vehicles.size()}">You have no registered vehicles at the moment!</h3>
     <table th:if="${vehicles.size()>0}" class="table table-hover">
@@ -11,17 +11,24 @@
         <th>Vehicle Brand</th>
         <th>Vehicle Model</th>
         <th>Year of Manufacture</th>
-<!--        <th>Type Of Repairment</th>-->
-<!--        <th>Repairment CarService</th>-->
         <th>Selected Repairment time</th>
+        <th>Assigned worker</th>
         <tr th:each="vehicle : ${vehicles}">
             <td th:text="${vehicle.licensePlateNumber}"></td>
             <td th:text="${vehicle.vehicleBrand}"></td>
             <td th:text="${vehicle.vehicleModel}"></td>
             <td th:text="${vehicle.yearOfManufacture}"></td>
-<!--            <td th:text="${vehicle.getRepairments()}"></td>-->
-<!--            <td th:text="${vehicle.selectedCarService}"></td>-->
             <td th:text="${vehicle.getSelectedTimeForRepair()}"></td>
+            <td>
+                <span th:if="${vehicle.getEmployee() != null}">
+                    <!-- Content to display if the condition is true -->
+                     <span th:text="${vehicle.getEmployee().getFirstName()}"></span>
+                </span>
+                <span th:if="${vehicle.getEmployee() == null}">
+                    <!-- Content to display if the condition is false (else part) -->
+                    No employee selected
+                </span>
+            </td>
         </tr>
     </table>
 </div>

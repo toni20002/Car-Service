@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+<h4 style="margin: 2%">Registered Cars</h4>
+<div class="col-6">
+    <form action="#" th:action="@{/assign-worker}" th:object="${assignWorker}" method="post">
+    <table th:if="${vehicles.size()>0}" class="table table-hover">
+        <th>Plate Number</th>
+        <th>Vehicle Brand</th>
+        <th>Vehicle Model</th>
+        <th>Year of Manufacture</th>
+        <th>Selected Repairment time</th>
+        <th>Assign worker</th>
+        <tr th:each="vehicle : ${vehicles}">
+            <td th:text="${vehicle.licensePlateNumber}"></td>
+            <td th:text="${vehicle.vehicleBrand}"></td>
+            <td th:text="${vehicle.vehicleModel}"></td>
+            <td th:text="${vehicle.yearOfManufacture}"></td>
+            <td th:text="${vehicle.getSelectedTimeForRepair()}"></td>
+        </tr>
+    </table>
+        <table class="table table-success table-striped">
+            <th>Select license plate to assign to employee </th>
+            <td>
+                <select th:field="*{vehicleId}">
+                    <option value="">Select License plate number</option>
+                    <option th:each="a : ${vehicles}"
+                            th:text="${a.getLicensePlateNumber()}"
+                            th:value="${a.getVehicle_id()}">
+                    </option>
+                </select>
+            </td>
+            <td>
+                <select th:field="*{employeeId}">
+                    <option value="">Select Employee</option>
+                    <option th:each="a : ${users}"
+                            th:text="${a.getFirstName()}"
+                            th:value="${a.getUser_id()}">
+                    </option>
+                </select>
+            </td>
+        </table>
+    <button type="submit" class="btn btn-primary">Confirm assignment</button>
+    </form>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

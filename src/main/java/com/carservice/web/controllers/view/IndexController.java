@@ -97,7 +97,11 @@ public class IndexController {
              **/
             //TODO figure out the worker logic - would there be a different logic for registering a worker
             // or would it be set manually as well
+            if (user.getIsEmployee()) {
+                user.setRole_id(roleMapper.findRoleByAuthority("EMPLOYEE"));
+            } else {
             user.setRole_id(roleMapper.findRoleByAuthority("CUSTOMER"));
+            }
 
             userRepository.saveAndFlush(modelMapper.map(user, User.class));
             return "redirect:/login";
@@ -108,15 +112,6 @@ public class IndexController {
 
         }
 
-    }
-
-    @GetMapping("/my-vehicles")
-    public String getMyVehicles(HttpServletRequest request, Model model) {
-        User user = (User) request.getSession().getAttribute("user");
-
-        model.addAttribute("vehicles", vehicleService.getAllVehiclesByOwner(user));
-
-        return "/my-vehicles";
     }
 
     @ModelAttribute("servletPath")

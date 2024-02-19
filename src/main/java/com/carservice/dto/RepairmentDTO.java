@@ -3,7 +3,6 @@ package com.carservice.dto;
 import com.carservice.data.entities.CarService;
 import com.carservice.data.entities.RepairmentType;
 import com.carservice.data.entities.Vehicle;
-import com.carservice.web.model.VehicleModel;
 import lombok.Data;
 
 import java.sql.Timestamp;

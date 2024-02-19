@@ -24,5 +24,6 @@ public class UserModel {
     @NotEmpty(message = "PhoneNumber field is required!")
     private String phoneNumber;
     private Timestamp creationTime;
+    private Boolean isEmployee;
     private Role role_id;
 }

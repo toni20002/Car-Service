@@ -27,6 +27,8 @@ public class Vehicle {
     private LocalDateTime selectedTimeForRepair;
     @ManyToOne
     private User owner;
+    @ManyToOne
+    private User employee;
 
     //! A vehicle could have many repairments but may be registered only once
     @OneToMany(mappedBy = "vehicle")

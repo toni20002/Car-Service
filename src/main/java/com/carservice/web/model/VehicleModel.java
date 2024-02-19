@@ -29,7 +29,7 @@ public class VehicleModel implements Serializable {
     @NotEmpty(message = "A repairment service must be selected!")
     private String selectedRepairmentType;
     private LocalDateTime selectedTimeForRepair;
-
+    private User employee;
     @Override
     public String toString() {
         return "VehicleModel{" +

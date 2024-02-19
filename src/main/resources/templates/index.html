@@ -7,7 +7,11 @@
 <h1 style="align-content: center" th:text="'Hello and  ' + ${welcome}"></h1>
 <br/>
 <h1 th:text="'Whats wrong with your vehicle?'"></h1>
-<h2></h2>
+<div th:if="${session.user.getRole_id().getAuthority().equals('ADMIN')}">
+As an admin you have the privilege to create Employees
+    <a class="nav-link" href="/register"> Create Employee </a>
+</div>
+
 <footer th:replace="fragments :: footer"></footer>
 </body>
 </html>

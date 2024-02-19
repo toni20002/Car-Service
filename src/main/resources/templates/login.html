@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:replace="fragments :: head">
+    <link rel="icon" href="images/broken-car.png" type="image/x-icon">
 </head>
 <body>
 <div class="col-6">
     <h4>Login</h4>
     <form action="#" th:action="@{/login}" th:object="${user}" method="post">
-        <div class="form-group">
+        <div class="form-group .child">
             <table class="login-table">
                 <div th:if="${param.error}" class="alert alert-danger">
                     Invalid username and password.
@@ -32,11 +33,13 @@
                                id="password">
                     </td>
                 </tr>
-
             </table>
         </div>
         <button type="submit" class="btn btn-primary">Log in</button>
     </form>
+    <div style="margin-top: 3%;">
+        You don't have an account yet? <a class="nav-link" href="/register">Register here</a>
+    </div>
 </div>
 <footer th:replace="fragments :: footer"></footer>
 </body>
